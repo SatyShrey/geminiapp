@@ -1,0 +1,81 @@
+import { createContext, useContext, useEffect, useRef, useState } from "react";
+import Modals from "./Modals";
+import axios from "axios";
+
+const Contexts = createContext();
+
+export default function ValueProvider({ children }) {
+    const [user, setuser] = useState(null);
+    const [messages, setmessages] = useState([]);
+    const [currentChat, setcurrentChat] = useState({});
+    const [error, seterror] = useState(null);
+    const [success, setsuccess] = useState(null);
+    const [loading, setloading] = useState(null);
+    const resolveConfirm = useRef(null);
+    const [text, settext] = useState(null);
+    const url = import.meta.env.VITE_GEMINI_BACKEND;
+    const [showModal, setshowModal] = useState(false)
+    //confirm fuction
+    function customConfirm(text) {
+        settext(text);
+        return new Promise((resolve) => {
+            resolveConfirm.current = resolve;
+            document.getElementById("my_modal_confirm").showModal();
+        });
+    }
+    //get local storage data
+    useEffect(() => {
+        const user = localStorage.getItem("user");
+        if (user) { setuser(JSON.parse(user)) }
+        const messages = localStorage.getItem("messages");
+        if (messages) { setmessages(JSON.parse(messages)) }
+    }, [])
+    //save messages
+    const saveMessage = () => {
+        if(!currentChat || !currentChat.bot || !currentChat.user || !currentChat.id){
+            return seterror("Invalid message")
+        }
+        const isSaved = messages.find(f => f.id === currentChat.id)
+        if (isSaved) { return seterror("Message already saved") }
+        const newList = [...messages, currentChat];
+        setmessages(newList);
+        localStorage.setItem("messages", JSON.stringify(newList));
+        setsuccess("Message saved");
+    }
+    //delete messges
+    const deleteMessage = async (id) => {
+        const conFirm = await customConfirm("Are you sure to delete?")
+        if (conFirm) {
+            const newList = messages.filter(message => id !== message.id);
+            setmessages(newList);
+            localStorage.setItem("messages", JSON.stringify(newList));
+            setsuccess("Message deleted")
+        }
+    }
+
+    async function logout() {//logout
+        const conFirm = await customConfirm("Are you sure to logout?");
+        if (conFirm) {
+            setloading(true)
+            setshowModal(false)
+            axios.post(url + "logout",user).then(data => {
+                localStorage.clear();
+                setuser(null);
+                setloading(false);
+                setsuccess("Logged out successfully")
+            }).catch(e => {
+                setloading(false);
+                seterror(e.message);
+            })
+        }
+    }
+
+    return <Contexts.Provider value={{
+        setuser, user, messages, setmessages, currentChat, setcurrentChat, error, seterror, success, setsuccess, loading, setloading, customConfirm, text, resolveConfirm, url, showModal, setshowModal, saveMessage, deleteMessage, logout
+    }}>
+        {children}
+        <Modals />
+    </Contexts.Provider>
+}
+
+export const useValues = () => useContext(Contexts);

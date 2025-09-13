@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@plugin "daisyui";
+*{transition: 0.5s;font-family: Poppins;}
+.typed-cursor {
+    font-size: 24px;
+  }
