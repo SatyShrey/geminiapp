@@ -18,17 +18,17 @@ export default function Dashboard() {
     }, []);
 
     return (
-        <div className="mt-10 p-2 h-full">
+        <div className=" p-2 flex-1 overflow-y-auto" style={{ scrollbarWidth: "none" }}>
             {(currentChat && currentChat.bot && currentChat.user) ? <>
                 <div className="flex justify-center">
                     <button onClick={saveMessage} className="btn">Save<BiSave size={25} /></button>
                 </div>
-                <div>
+                <div >
                     <pre className="m-1 float-right clear-both whitespace-pre-wrap font-semibold">{currentChat.user}</pre>
                     <pre className="m-1 float-left clear-both whitespace-pre-wrap">{currentChat.bot}</pre>
                 </div>
             </>
-                : <div>
+                : <div className="text-center mt-10">
                     <span ref={el} className="text-bold font-bold text-2xl">Hello {user.name}</span>
                     <span className="animate-ping text-2xl">|</span>
                 </div>

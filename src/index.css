@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @plugin "daisyui";
-*{transition: 0.5s;font-family: Poppins;}
-.typed-cursor {
-    font-size: 24px;
-  }
+
+* {
+      box-sizing: border-box;
+      font-family: Poppins;
+      transition: .5s;
+    }
+    body, html {
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+    }

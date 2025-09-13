@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import Modals from "./Modals";
 import axios from "axios";
 
 const Contexts = createContext();
@@ -20,7 +19,6 @@ export default function ValueProvider({ children }) {
         settext(text);
         return new Promise((resolve) => {
             resolveConfirm.current = resolve;
-            document.getElementById("my_modal_confirm").showModal();
         });
     }
     //get local storage data
@@ -71,10 +69,9 @@ export default function ValueProvider({ children }) {
     }
 
     return <Contexts.Provider value={{
-        setuser, user, messages, setmessages, currentChat, setcurrentChat, error, seterror, success, setsuccess, loading, setloading, customConfirm, text, resolveConfirm, url, showModal, setshowModal, saveMessage, deleteMessage, logout
+        setuser, user, messages, setmessages, currentChat, setcurrentChat, error, seterror, success, setsuccess, loading, setloading, customConfirm, text, settext, resolveConfirm, url, showModal, setshowModal, saveMessage, deleteMessage, logout,
     }}>
         {children}
-        <Modals />
     </Contexts.Provider>
 }
 
