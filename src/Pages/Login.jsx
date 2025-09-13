@@ -33,7 +33,7 @@ export default function Login() {
             className=" bg-base-200 border-base-300 rounded-box w-xs border p-4">
             <h2 className="font-bold text-xl text-center">Login</h2>
 
-            <input onChange={(e) => setemail(e.target.value)} type="email" value={email} className="input mt-2" placeholder="Email" />
+            <input onChange={(e) => setemail(e.target.value.toLowerCase())} type="email" value={email} className="input mt-2" placeholder="Email" />
 
             <input onChange={(e) => setpassword(e.target.value)} type="password" value={password} className="input mt-2" placeholder="Password" />
 
@@ -62,7 +62,7 @@ export default function Login() {
 
             <input onChange={(e) => setname(e.target.value)} type="text" value={name} className="mt-2 input" placeholder="Name" />
 
-            <input onChange={(e) => setemail(e.target.value)} type="email" value={email} className="mt-2 input" placeholder="Email" />
+            <input onChange={(e) => setemail(e.target.value.toLowerCase())} type="email" value={email} className="mt-2 input" placeholder="Email" />
 
             <input onChange={(e) => setpassword(e.target.value)} type="password" value={password} className="mt-2 input" placeholder="Password" />
 
