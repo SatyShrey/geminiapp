@@ -38,7 +38,7 @@ export default function Login() {
             <input onChange={(e) => setpassword(e.target.value)} type="password" className="input mt-2" placeholder="Password" />
 
             <button className="btn btn-neutral mt-4 block w-full" type="submit" >Login</button>
-            <button className="btn btn-link block m-auto" type="reset" onClick={goto}>Go to signup page</button>
+            <button className="btn btn-link block m-auto" onClick={goto}>Go to signup page</button>
         </form>
     }
 
@@ -67,7 +67,7 @@ export default function Login() {
             <input onChange={(e) => setpassword(e.target.value)} type="password" className="mt-2 input" placeholder="Password" />
 
             <button className="btn btn-neutral mt-4 block w-full" type="submit" >Signup</button>
-            <button className="btn btn-link block w-full" type="reset" onClick={goto}>Go to login page</button>
+            <button className="btn btn-link block w-full" onClick={goto}>Go to login page</button>
         </form>
     }
 
