@@ -33,12 +33,12 @@ export default function Login() {
             className=" bg-base-200 border-base-300 rounded-box w-xs border p-4">
             <h2 className="font-bold text-xl text-center">Login</h2>
 
-            <input onChange={(e) => setemail(e.target.value)} type="email" className="input mt-2" placeholder="Email" />
+            <input onChange={(e) => setemail(e.target.value)} type="email" value={email} className="input mt-2" placeholder="Email" />
 
-            <input onChange={(e) => setpassword(e.target.value)} type="password" className="input mt-2" placeholder="Password" />
+            <input onChange={(e) => setpassword(e.target.value)} type="password" value={password} className="input mt-2" placeholder="Password" />
 
             <button className="btn btn-neutral mt-4 block w-full" type="submit" >Login</button>
-            <button className="btn btn-link block m-auto" onClick={goto}>Go to signup page</button>
+            <button className="btn btn-link block m-auto" type="reset" onClick={goto}>Go to signup page</button>
         </form>
     }
 
@@ -60,14 +60,14 @@ export default function Login() {
             className="bg-base-200 border-base-300 rounded-box w-xs border p-4">
             <h2 className=" font-bold text-xl text-center">Signup</h2>
 
-            <input onChange={(e) => setname(e.target.value)} type="text" className="mt-2 input" placeholder="Name" />
+            <input onChange={(e) => setname(e.target.value)} type="text" value={name} className="mt-2 input" placeholder="Name" />
 
-            <input onChange={(e) => setemail(e.target.value)} type="email" className="mt-2 input" placeholder="Email" />
+            <input onChange={(e) => setemail(e.target.value)} type="email" value={email} className="mt-2 input" placeholder="Email" />
 
-            <input onChange={(e) => setpassword(e.target.value)} type="password" className="mt-2 input" placeholder="Password" />
+            <input onChange={(e) => setpassword(e.target.value)} type="password" value={password} className="mt-2 input" placeholder="Password" />
 
             <button className="btn btn-neutral mt-4 block w-full" type="submit" >Signup</button>
-            <button className="btn btn-link block w-full" onClick={goto}>Go to login page</button>
+            <button className="btn btn-link block w-full" type="reset" onClick={goto}>Go to login page</button>
         </form>
     }
 
