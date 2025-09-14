@@ -8,7 +8,8 @@ export default function Dashboard() {
     const el = useRef();
 
     useEffect(() => {
-        const typed = new Typed(el.current, {
+        if(el.current){
+            const typed = new Typed(el.current, {
             strings: [`Hello ${user.name}`, 'Welcome to Gemini lemo'],
             typeSpeed: 50,
             showCursor: false,
@@ -16,6 +17,7 @@ export default function Dashboard() {
         });
 
         return () => typed.destroy(); // Clean up on unmount
+        }
     }, []);
 
     return (
