@@ -5,15 +5,20 @@ import axios from "axios";
 
 export default function InputBox() {
     const [prompt, setprompt] = useState();
-    const { url, setloading,seterror,setcurrentChat } = useValues();
+    const { url, setloading,seterror,setcurrentChat,setuser } = useValues();
     function sendPrompt(prompt) {
         setloading(true);
         axios.post(url + "gemini", { prompt },{withCredentials:true}).then(data => {
+            setloading(false)
             if (data && data.data && data.data.response) {
                 setcurrentChat({user:prompt,bot:data.data.response,id:Date.now()});
-                setloading(false)
-            } else { seterror(() => typeof (data.data) === "string" ? data.data : "Unknown error"); setloading(false) }
-        }).catch(e => { setloading(false); seterror(e.message) })
+            }else if(data.data==="jwt expired" || data.data==="Unauthorized!"){
+                localStorage.clear();
+                setuser(null);
+                seterror("Login expired please login again");
+            }
+            else { seterror(() => typeof (data.data) === "string" ? data.data : "Unknown error"); }
+        }).catch(e => { setloading(false); seterror(e.message)})
     }
     return (
         <div className="p-1 shadow-[0_0_2px] sticky bottom-0">

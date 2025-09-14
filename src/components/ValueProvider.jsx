@@ -21,16 +21,19 @@ export default function ValueProvider({ children }) {
             resolveConfirm.current = resolve;
         });
     }
-    //get local storage data
-    useEffect(() => {
+    //get local storage data and get verified
+    function getVerified() {
         const user = localStorage.getItem("user");
         if (user) { setuser(JSON.parse(user)) }
         const messages = localStorage.getItem("messages");
         if (messages) { setmessages(JSON.parse(messages)) }
+    }
+    useEffect(() => {
+        getVerified();
     }, [])
     //save messages
     const saveMessage = () => {
-        if(!currentChat || !currentChat.bot || !currentChat.user || !currentChat.id){
+        if (!currentChat || !currentChat.bot || !currentChat.user || !currentChat.id) {
             return seterror("Invalid message")
         }
         const isSaved = messages.find(f => f.id === currentChat.id)
@@ -56,11 +59,13 @@ export default function ValueProvider({ children }) {
         if (conFirm) {
             setloading(true)
             setshowModal(false)
-            axios.post(url + "logout",user).then(data => {
-                localStorage.clear();
-                setuser(null);
-                setloading(false);
-                setsuccess("Logged out successfully")
+            axios.post(url + "logout",{},{withCredentials:true}).then(data => {
+                    setloading(false);
+                if (data.data === "loggedou") {
+                    localStorage.clear();
+                    setuser(null);
+                    setsuccess("Logged out successfully")
+                } else { seterror(data.data) }
             }).catch(e => {
                 setloading(false);
                 seterror(e.message);

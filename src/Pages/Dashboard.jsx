@@ -9,9 +9,10 @@ export default function Dashboard() {
 
     useEffect(() => {
         const typed = new Typed(el.current, {
-            strings: [`Hello ${user.name}`, 'Welcome to My_Gemini_lemo'],
+            strings: [`Hello ${user.name}`, 'Welcome to Gemini lemo'],
             typeSpeed: 50,
             showCursor: false,
+            loop:true,
         });
 
         return () => typed.destroy(); // Clean up on unmount
