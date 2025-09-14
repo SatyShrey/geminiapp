@@ -61,7 +61,7 @@ export default function ValueProvider({ children }) {
             setshowModal(false)
             axios.post(url + "logout",{},{withCredentials:true}).then(data => {
                     setloading(false);
-                if (data.data === "loggedou") {
+                if (data.data === "loggedout") {
                     localStorage.clear();
                     setuser(null);
                     setsuccess("Logged out successfully")
