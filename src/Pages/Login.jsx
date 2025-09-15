@@ -12,9 +12,6 @@ export default function Login() {
         setisLoginScreen((prev) => !prev)
     }
 
-    
-   
-
     return <div className="h-full flex justify-center items-center">
         {isLoginScreen ? <LoginScreen goto={goto} /> : <SignupScreen goto={goto} />}
     </div>

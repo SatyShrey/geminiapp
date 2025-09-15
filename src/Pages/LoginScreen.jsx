@@ -1,16 +1,23 @@
-import { useState } from "react";
+
 import { useValues } from "../components/ValueProvider";
 import axios from "axios";
-export default function LoginScreen({ goto }) {
-    const { setloading, setuser, seterror, setsuccess, url, user } = useValues();
-    const [email, setemail] = useState('');
-    const [password, setpassword] = useState('');
+import { useFormik } from "formik";
+import * as Yup from 'yup';
+const validationSchema = Yup.object({
+    email: Yup.string().email("Please enter valid email").required("Please enter your email"),
+    password: Yup.string().min(4).required("Please enter password"),
+})
+const initialValues = {
+    email: "",
+    password: "",
+}
 
-    const login = (e) => {
-        e.preventDefault()
-        if (!email || !password) { return seterror("Value can not be empty") }
+export default function LoginScreen({ goto }) {
+    const { setloading, setuser, seterror, setsuccess, url, } = useValues();
+
+    const login = (values) => {
         setloading(true)
-        axios.post(url + "login", { email, password }, { withCredentials: true }).then(data => {
+        axios.post(url + "login", { email: values.email, password: values.password }, { withCredentials: true }).then(data => {
             setloading(false);
             if (data.data === "Invalid credentials") { return seterror(data.data) }
             setsuccess(data.data.message);
@@ -19,13 +26,21 @@ export default function LoginScreen({ goto }) {
         }).catch(err => { seterror(err.message); setloading(false) })
     }
 
-    return <form onSubmit={login}
+    const { values, handleBlur, handleChange, handleSubmit, errors } = useFormik({
+        initialValues,
+        validationSchema,
+        onSubmit: (values) => { login(values) }
+    });
+
+    return <form onSubmit={handleSubmit}
         className=" bg-base-200 border-base-300 rounded-box w-xs border p-4">
         <h2 className="font-bold text-xl text-center">Login</h2>
 
-        <input onChange={(e) => setemail(e.target.value.toLowerCase())} type="email" value={email} className="input mt-2" placeholder="Email" />
+        <input className="input mt-2" type="email" name="email" onBlur={handleBlur} onChange={handleChange} value={values.email}
+        /><small className="text-red-600 text-center" >{errors.email}</small>
 
-        <input onChange={(e) => setpassword(e.target.value)} type="password" value={password} className="input mt-2" placeholder="Password" />
+        <input className="input mt-2" type="password" name="password" onBlur={handleBlur} onChange={handleChange} value={values.password}
+        /><small className="text-red-600 text-center" >{errors.password}</small>
 
         <button className="btn btn-neutral mt-4 block w-full" type="submit" >Login</button>
         <button className="btn btn-link block m-auto" type="reset" onClick={goto}>Go to signup page</button>
