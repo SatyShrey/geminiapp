@@ -9,26 +9,17 @@ export default function Modals() {
     const [loadingBottom, setloadingBottom] = useState("-50%");
     const [confirmBottom, setconfirmBottom] = useState("-50%");
 
-    useEffect(()=>{
-        if(error){seterrorBottom("0%")}
-        else(seterrorBottom("-50%"))
-    },[error])
-
-    useEffect(()=>{
-        if(success){setsuccessBottom("0%")}
-        else(setsuccessBottom("-50%"))
-    },[success])
+    function popup(modal,setbottom){
+        if(modal){setbottom("0%")}
+        else{setbottom("-50%")}
+    }
 
      useEffect(()=>{
-        if(loading){setloadingBottom("0%")}
-        else(setloadingBottom("-50%"))
-    },[loading])
-
-    useEffect(()=>{
-        if(text){setconfirmBottom("0%")}
-        else(setconfirmBottom("-50%"))
-    },[text])
-
+        popup(error,seterrorBottom)
+        popup(success,setsuccessBottom)
+        popup(loading,setloadingBottom)
+        popup(text,setconfirmBottom)
+    },[loading,error,success,text])
 
     function handleConfirm(choice) {
         resolveConfirm.current(choice);
