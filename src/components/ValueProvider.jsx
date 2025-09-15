@@ -59,17 +59,12 @@ export default function ValueProvider({ children }) {
         if (conFirm) {
             setloading(true)
             setshowModal(false)
-            axios.post(url + "logout",{},{withCredentials:true}).then(data => {
-                    setloading(false);
-                if (data.data === "loggedout") {
-                    localStorage.clear();
-                    setuser(null);
-                    setsuccess("Logged out successfully")
-                } else { seterror(data.data) }
-            }).catch(e => {
+            axios.post(url + "logout", {}, { withCredentials: true }).then((data) => {
                 setloading(false);
-                seterror(e.message);
-            })
+                localStorage.clear();
+                setuser(null);
+                setsuccess(data.data)
+            }).catch(e => { setloading(false);seterror(e.message); })
         }
     }
 
