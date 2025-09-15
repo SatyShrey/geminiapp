@@ -13,7 +13,8 @@ export default function InputBox() {
         axios.post(url + "gemini", { prompt }, { withCredentials: true }).then(data => {
              setloading(false)
              setcurrentChat({ user: prompt, bot: data.data, id: Date.now() });
-        }).catch(e => {seterror(e.message);setloading(false)})
+             e.target.reset();
+        }).catch(err => {seterror(err.message);setloading(false)})
     }
 
     return (
