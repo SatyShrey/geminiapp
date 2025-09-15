@@ -11,13 +11,8 @@ export default function LoginScreen({goto}) {
             if (!email || !password) { return seterror("Value can not be empty") }
             setloading(true)
             axios.post(url + "login", { email, password },{withCredentials:true}).then(data => {
-                if (data && data.data && data.data.user) {
-                    const loginUser = data.data.user;
-                    setuser(loginUser);
-                    localStorage.setItem("user", JSON.stringify(loginUser))
-                    setloading(false); setsuccess("Login success")
-                } else { seterror(data.data); setloading(false) }
-            }).catch(err => { seterror(err.message); setloading(false) })
+               setloading(false);console.log(data.data);
+            }).catch(err => { console.error(err.message); setloading(false) })
         }
 
         return <form onSubmit={login}

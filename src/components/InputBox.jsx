@@ -11,17 +11,18 @@ export default function InputBox() {
         e.preventDefault();
         setloading(true);
         axios.post(url + "gemini", { prompt }, { withCredentials: true }).then(data => {
-            setloading(false)
-            if (data && data.data && data.data.response) {
-                setcurrentChat({ user: prompt, bot: data.data.response, id: Date.now() });
-                e.target.reset();setprompt('')
-            } else if (data.data === "jwt expired" || data.data === "Unauthorized!") {
-                localStorage.clear();
-                setuser(null);
-                seterror("Login expired please login again");
-            }
-            else { seterror(typeof (data.data) === "string" ? data.data : "Unknown error"); }
-        }).catch(e => { setloading(false); seterror(e.message) })
+             setloading(false)
+            // if (data && data.data && data.data.response) {
+            //     setcurrentChat({ user: prompt, bot: data.data.response, id: Date.now() });
+            //     e.target.reset();setprompt('')
+            // } else if (data.data === "jwt expired" || data.data === "Unauthorized!") {
+            //     localStorage.clear();
+            //     setuser(null);
+            //     seterror("Login expired please login again");
+            // }
+            // else { seterror(data.data); }
+            console.log(data.data)
+        }).catch(e => {console.error(e.message);setloading(false)})
     }
 
     return (
