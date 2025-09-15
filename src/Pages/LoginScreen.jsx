@@ -15,7 +15,7 @@ export default function LoginScreen({goto}) {
                setsuccess(data.data.message);
                setuser(data.data.user);
                localStorage.setItem('user',JSON.stringify(data.data.user))
-            }).catch(err => { console.error(err.message); setloading(false) })
+            }).catch(err => { console.error(err); setloading(false) })
         }
 
         return <form onSubmit={login}
