@@ -12,6 +12,9 @@ export default function LoginScreen({goto}) {
             setloading(true)
             axios.post(url + "login", { email, password },{withCredentials:true}).then(data => {
                setloading(false);console.log(data.data);
+               setsuccess(data.data.message);
+               setuser(data.data.user);
+               localStorage.setItem('user',JSON.stringify(data.data.user))
             }).catch(err => { console.error(err.message); setloading(false) })
         }
 
