@@ -25,7 +25,6 @@ export default function ValueProvider({ children }) {
     function getVerified() {
         const user= localStorage.getItem("user");
         if (user) { setuser(JSON.parse(user)) }
-       else{ setuser({name:"Satya",email:"satya@gmail.com"}) }
         const messages = localStorage.getItem("messages");
         if (messages) { setmessages(JSON.parse(messages)) }
     }
