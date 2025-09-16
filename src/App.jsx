@@ -8,7 +8,7 @@ import Modals from "./components/Modals";
 
 export default function App() {
   return (
-    <div className="h-dvh flex flex-col relative w-3xl max-w-full m-auto shadow-[0_0_1px] overflow-hidden">
+    <div className="h-dvh flex flex-col bg-base-100/90 relative overflow-hidden w-3xl max-w-full m-auto shadow-[0_0_1px]">
         <Header />
         <Login />
         <Protected><Dashboard /></Protected>
