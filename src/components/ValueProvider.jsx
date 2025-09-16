@@ -12,7 +12,7 @@ export default function ValueProvider({ children }) {
     const [loading, setloading] = useState(null);
     const resolveConfirm = useRef(null);
     const [text, settext] = useState(null);
-    const url ="https://gemini-backend-hwxx.onrender.com/" //import.meta.env.VITE_GEMINI_BACKEND;//
+    const url = import.meta.env.VITE_GEMINI_BACKEND;//"https://gemini-backend-hwxx.onrender.com/"
     const [showModal, setshowModal] = useState(false)
     //confirm fuction
     function customConfirm(text) {
