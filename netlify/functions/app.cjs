@@ -71,7 +71,7 @@ app.post("/api/login", async (req, res) => {
   const token = jwt.sign(logUser, SECRET_KEY, { expiresIn: "30d" });
   res.cookie("authToken", token, {
       httpOnly: true,
-      secure: true,sameSite:"none",
+      secure: true,
       maxAge: 30 * 24 * 60 * 60 * 1000 
     });
   res.json({ message: "Login successful", user: logUser });
@@ -79,7 +79,7 @@ app.post("/api/login", async (req, res) => {
 
 // **Logout Route**
 app.post("/api/logout", async (req, res) => {
-  res.clearCookie("authToken", { httpOnly: true, secure: true, sameSite: "none" });
+  res.clearCookie("authToken", { httpOnly: true, secure: true, });
   res.send('You are logged out')
 });
 
