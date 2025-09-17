@@ -21,7 +21,7 @@ export default function InputBox() {
              if(data.data==="Server error"){return seterror(data.data)}
              if(data.data==="Login expired"){return autoLogout()}
              setcurrentChat({ user: prompt, bot: data.data, id: Date.now() });
-             e.target.reset();
+             e.target.reset();setprompt('')
         }).catch(err => {seterror(err.message);setloading(false)})
     }
 
