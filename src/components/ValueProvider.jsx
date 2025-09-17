@@ -58,7 +58,7 @@ export default function ValueProvider({ children }) {
         if (conFirm) {
             setloading(true)
             setshowModal(false)
-            axios.post(url + "logout", {}, { withCredentials: true }).then((data) => {
+            axios.post("/api/logout", {}, { withCredentials: true }).then((data) => {
                 setloading(false);
                 localStorage.clear();
                 setuser(null);
