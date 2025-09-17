@@ -15,6 +15,7 @@ export default function InputBox() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(!prompt){return }
         setloading(true);
         axios.post("/api/gemini", { prompt }, { withCredentials: true }).then(data => {
              setloading(false);
