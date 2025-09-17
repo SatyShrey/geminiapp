@@ -12,7 +12,8 @@ export default function Login() {
         setisLoginScreen((prev) => !prev)
     }
 
-    return <div className="h-full flex justify-center items-center">
+    return <div style={{scrollbarWidth:"none"}}
+    className="min-h-full flex justify-center overflow-y-scroll items-center">
         {isLoginScreen ? <LoginScreen goto={goto} /> : <SignupScreen goto={goto} />}
     </div>
 }
