@@ -35,7 +35,6 @@ export default function Modals() {
                 <span className="text-error text-xl">{typeof (error) === "string" ? error : ""}</span>
                 <button onClick={() => seterror(null)}
                     className="btn btn-error">Ok</button>
-
             </div>
 
             <div className=" absolute left-1 right-1 rounded-tr-2xl rounded-tl-2xl max-h-[50vh] overflow-x-scroll shadow-[0_0_1px] flex flex-col gap-3 p-2 items-center pb-10 bg-base-100" style={{ bottom: successBottom, scrollbarWidth: "none", }}>
@@ -43,15 +42,15 @@ export default function Modals() {
                 <span className="text-success text-xl min-h-4">{typeof (success) === "string" ? success : "..."}</span>
                 <button onClick={() => setsuccess(null)}
                     className="btn btn-success">Ok</button>
-
             </div>
+
             <div className=" absolute left-1 right-1 rounded-tr-2xl rounded-tl-2xl max-h-[50vh] overflow-x-scroll shadow-[0_0_1px] flex flex-col gap-3 p-2 items-center pb-10 bg-base-100" style={{ bottom: loadingBottom, scrollbarWidth: "none", }}>
                 <h3 className=" text-lg text-center">Please wait...</h3>
                 <div className="text-center">
                     <span className="loading loading-bars"></span>
                 </div>
-
             </div>
+
             <div className=" absolute left-1 right-1 rounded-tr-2xl rounded-tl-2xl max-h-[50vh] overflow-x-scroll shadow-[0_0_1px] flex flex-col gap-3 p-2 items-center pb-10 bg-base-100" style={{ bottom: confirmBottom, scrollbarWidth: "none", }}>
                 <h3 className="font-bold text-lg">Confirm</h3>
                 <span className="text-warning text-xl min-h-4">{typeof (text) === "string" ? text : "Are you sure?"}</span>
@@ -61,7 +60,6 @@ export default function Modals() {
                     <button onClick={() => handleConfirm(false)}
                         className="btn ms-2">No</button>
                 </div>
-
             </div>
         </>
     )
