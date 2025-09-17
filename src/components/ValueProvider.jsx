@@ -22,10 +22,23 @@ export default function ValueProvider({ children }) {
     }
     //get local storage data and get verified
     function getVerified() {
-        const user= localStorage.getItem("user");
-        if (user) { setuser(JSON.parse(user)) }
+        const localuser=localStorage.getItem('user');
+        if(!localuser){return}
+            setloading(true)
         const messages = localStorage.getItem("messages");
         if (messages) { setmessages(JSON.parse(messages)) }
+       axios.post("/api/start", {user:""}, { withCredentials: true }).then((data)=>{
+            setloading(false)
+        if(data.data==='Login expired'){ 
+            seterror(data.data) 
+            setuser(null)
+            localStorage.clear();
+        }else{
+            setuser(data.data);
+            localStorage.setItem('user',JSON.stringify(data.data))
+        }
+
+       })
     }
     useEffect(() => {
         getVerified();

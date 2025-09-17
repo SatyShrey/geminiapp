@@ -98,4 +98,14 @@ app.post("/api/gemini", async (req, res) => {
   } catch (err) { res.send('Server error') }
 })
 
+//**start app**/
+app.post("/api/start", async (req, res) => {
+  try {
+    const token = req.cookies.authToken;
+   const decoded = jwt.verify(token, SECRET_KEY);
+    req.user = decoded;
+    res.send(req.user)
+  } catch (err) { return res.send('Login expired') }
+})
+
 exports.handler = serverless(app);
