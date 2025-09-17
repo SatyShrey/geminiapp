@@ -9,6 +9,15 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 //express app
 const app = express();
 
+app.use((req, res, next) => {
+  const allowedOrigin = "https://gemini-render-app.netlify.app";
+  res.header("Access-Control-Allow-Origin", allowedOrigin);
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  if (req.method === "OPTIONS") return res.sendStatus(200);
+  next();
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser());
