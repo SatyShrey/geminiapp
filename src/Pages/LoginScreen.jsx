@@ -13,11 +13,10 @@ const initialValues = {
 }
 
 export default function LoginScreen({ goto }) {
-    const { setloading, setuser, seterror, setsuccess, url, } = useValues();
-
+    const { setloading, setuser, seterror, setsuccess, } = useValues();
     const login = (values) => {
         setloading(true)
-        axios.post(url + "login", { email: values.email, password: values.password }, { withCredentials: true }).then(data => {
+        axios.post("/api/login", { email: values.email, password: values.password }, { withCredentials: true }).then(data => {
             setloading(false);
             if (data.data === "Invalid credentials") { return seterror(data.data) }
             setsuccess(data.data.message);

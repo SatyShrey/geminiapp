@@ -11,7 +11,7 @@ export default function Drawer() {
         } else { setLeft("-100%"); }
     }, [showModal])
     return (
-            <div className="flex transition-all absolute top-0 bottom-0 duration-500 w-full" style={{ left }}>
+            <div className="flex z-10 transition-all absolute top-0 bottom-0 duration-500 w-full" style={{ left }}>
                 <div className="h-full w-[80%] backdrop-blur-2xl shadow-2xl flex flex-col">
                     <nav className="flex justify-between ">
                         <span></span>

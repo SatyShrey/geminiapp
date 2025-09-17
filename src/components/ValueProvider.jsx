@@ -12,7 +12,6 @@ export default function ValueProvider({ children }) {
     const [loading, setloading] = useState(null);
     const resolveConfirm = useRef(null);
     const [text, settext] = useState(null);
-    const url = import.meta.env.VITE_GEMINI_BACKEND;//"https://gemini-backend-hwxx.onrender.com/"
     const [showModal, setshowModal] = useState(false)
     //confirm fuction
     function customConfirm(text) {
@@ -69,7 +68,7 @@ export default function ValueProvider({ children }) {
     }
 
     return <Contexts.Provider value={{
-        setuser, user, messages, setmessages, currentChat, setcurrentChat, error, seterror, success, setsuccess, loading, setloading, customConfirm, text, settext, resolveConfirm, url, showModal, setshowModal, saveMessage, deleteMessage, logout,
+        setuser, user, messages, setmessages, currentChat, setcurrentChat, error, seterror, success, setsuccess, loading, setloading, customConfirm, text, settext, resolveConfirm, showModal, setshowModal, saveMessage, deleteMessage, logout,
     }}>
         {children}
     </Contexts.Provider>

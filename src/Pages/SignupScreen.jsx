@@ -16,11 +16,11 @@ const initialValues = {
 }
 export default function SignupScreen({ goto }) {
 
-    const { setloading, seterror, setsuccess, url, } = useValues();
+    const { setloading, seterror, setsuccess, } = useValues();
 
     const signup = (values) => {
         setloading(true)
-        axios.post(url + "signup", { name:values.name, email:values.email, password:values.password }).then(data => {
+        axios.post("/api/signup", { name:values.name, email:values.email, password:values.password }).then(data => {
             setloading(false)
             if (data.data === "Signup success") { return setsuccess(data.data); }
             seterror(data.data);
