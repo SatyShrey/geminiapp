@@ -26,9 +26,9 @@ export default function InputBox() {
     }
 
     return (
-        <div className="p-1 shadow-[0_0_2px]">
+        <div className="p-1 shadow-[0_0_2px] bg-base-200">
             <form onSubmit={handleSubmit}
-                className='flex w-full items-center p-2 rounded overflow-hidden shadow-[0_0_2px]'>
+                className='flex w-full items-center p-2 rounded overflow-hidden shadow-[0_0_2px] bg-base-100'>
                 <textarea className='h-full resize-none w-full border-none outline-none'
                     onChange={(e) => setprompt(e.target.value)} placeholder="Ask anything..."></textarea>
                 {prompt && <button className="cursor-pointer hover:scale-110" type="submit"><BiSolidSend size={30} /></button>}
