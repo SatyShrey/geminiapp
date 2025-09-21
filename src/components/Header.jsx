@@ -11,7 +11,7 @@ export default function Header() {
                 </button>}
             </div>
             <div className="flex-1">
-                <h1><b className="text-xl">Gemini</b><small>lemo</small></h1>
+                <h1><b className="text-xl">Gemini</b><small>lemon</small></h1>
             </div>
             <div className="flex-none">
                 <label className="flex cursor-pointer gap-2">
