@@ -3,7 +3,7 @@ import { useValues } from "./ValueProvider"
 export default function Header() {
     const {user,setshowModal} = useValues();
     return (
-        <div className="navbar overflow-hidden bg-gradient-to-b from-base-200 to-base-100">
+        <div className="navbar overflow-hidden shadow">
             <div className="flex-none">
                 {user && <button onClick={()=>setshowModal(true)}
                 className="btn btn-square btn-ghost">

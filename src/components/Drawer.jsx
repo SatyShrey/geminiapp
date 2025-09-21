@@ -15,7 +15,7 @@ export default function Drawer() {
                 <div className="h-full w-[80%] backdrop-blur-2xl shadow-2xl flex flex-col">
                     <nav className="flex justify-between ">
                         <span></span>
-                        <span className="font-semibold text-2xl m-1">Messages</span>
+                        <span className="font-semibold text-xl m-1">Saved messages</span>
                         <button className="btn btn-sm btn-circle m-1" onClick={logout}><BiPowerOff size={25} /></button>
                     </nav>
                     <div className="h-full w-full">
