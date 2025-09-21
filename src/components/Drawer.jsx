@@ -21,7 +21,7 @@ export default function Drawer() {
                     <div className="h-full w-full">
                         {messages && messages.map(message => <div key={message.id} className="flex w-full items-center p-1">
                             <p onClick={() => { setshowModal(false); setcurrentChat(message) }}
-                                className="w-full text-ellipsis whitespace-nowrap overflow-hidden">{message.user}</p>
+                                className="w-full text-ellipsis whitespace-nowrap overflow-hidden cursor-pointer">{message.user}</p>
                             <button onClick={() => deleteMessage(message.id)}
                                 className="btn btn-error btn-sm">Delete</button>
                         </div>)}
