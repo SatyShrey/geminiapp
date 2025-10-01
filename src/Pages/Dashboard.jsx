@@ -21,7 +21,7 @@ export default function Dashboard() {
     }, []);
 
     return (
-        <div className=" p-2 flex-1 overflow-y-auto" style={{ scrollbarWidth: "none" }}>
+        <div className="p-2 flex-1 overflow-y-scroll" style={{ scrollbarWidth: "none" }}>
             {(currentChat && currentChat.bot && currentChat.user) ? <>
                 <div className="flex justify-center">
                     <button onClick={saveMessage} className="btn">Save<BiSave size={25} /></button>
