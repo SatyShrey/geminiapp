@@ -29,7 +29,10 @@ export default function InputBox() {
 
     useEffect(() => {
         const input = document.getElementById('myInput');
-        input.focus({ preventScroll: true });
+        //input.focus({ preventScroll: true });
+        input.addEventListener("focus",(e)=>{
+            e.preventDefault();
+        })
     }, [])
 
     return (
