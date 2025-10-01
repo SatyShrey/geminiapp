@@ -16,7 +16,7 @@ export default function App() {
    }, [])
 
   return (
-    <div id="app" className="h-dvh flex flex-col bg-base-100/90 overflow-hidden max-w-3xl mx-auto">
+    <div id="app" className="h-dvh relative flex flex-col bg-base-100/90 overflow-hidden max-w-3xl mx-auto">
         <Header />
         <Login />
         <Protected><Dashboard /></Protected>

@@ -30,7 +30,7 @@ export default function Modals() {
         <> {(loading || error || success || text) &&
             <div className=" absolute top-0 bottom-0 left-0 right-0 backdrop-blur-[2px]"></div>}
 
-            <div className=" absolute left-1 right-1 rounded-tr-2xl rounded-tl-2xl max-h-[50vh] overflow-x-scroll shadow-[0_0_1px] flex flex-col gap-3 p-2 items-center pb-10 bg-base-100" style={{ bottom:errorBottom, scrollbarWidth: "none", }}>
+            <div className=" absolute left-1 right-1 rounded-tr-2xl rounded-tl-2xl max-h-[50vh] overflow-x-scroll duration-500 shadow-[0_0_1px] flex flex-col gap-3 p-2 items-center pb-10 bg-base-100" style={{ bottom:errorBottom, scrollbarWidth: "none", }}>
                 <h3 className="font-bold text-lg text-red-600">Error</h3>
                 <span className="text-error text-xl">{typeof (error) === "string" ? error : ""}</span>
                 <button onClick={() => seterror(null)}
