@@ -2,15 +2,16 @@ import { useState } from "react"
 import { BiSolidSend } from "react-icons/bi";
 import { useValues } from "./ValueProvider";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function InputBox() {
     const [prompt, setprompt] = useState();
-    const { setloading, seterror, setcurrentChat, setuser } = useValues();
+    const { setloading, setcurrentChat, setuser } = useValues();
 
     function autoLogout(){
         localStorage.clear();
         setuser(null);
-        seterror("Login expired")
+        toast.error("Login expired")
     }
 
     const handleSubmit = (e) => {
@@ -19,11 +20,11 @@ export default function InputBox() {
         setloading(true);
         axios.post("/api/gemini", { prompt }, { withCredentials: true }).then(data => {
              setloading(false);
-             if(data.data==="Server error"){return seterror(data.data)}
+             if(data.data==="Server error"){return toast.error(data.data)}
              if(data.data==="Login expired"){return autoLogout()}
              setcurrentChat({ user: prompt, bot: data.data, id: Date.now() });
              e.target.reset();setprompt('')
-        }).catch(err => {seterror(err.message);setloading(false)})
+        }).catch(err => {toast.error(err.message);setloading(false)})
     }
 
     return (

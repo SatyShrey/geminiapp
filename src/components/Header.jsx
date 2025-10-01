@@ -1,3 +1,4 @@
+import { Robot } from "react-bootstrap-icons";
 import { useValues } from "./ValueProvider"
 
 export default function Header() {
@@ -10,10 +11,7 @@ export default function Header() {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-5 w-5 stroke-current"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>}
             </div>
-            <div className="flex-1">
-                <h1><b className="text-xl">Gemini</b><small>lemon</small></h1>
-            </div>
-            <div className="flex-none">
+                <h1 className="flex-1 flex gap-1 font-semibold text-xl items-center"><Robot size={25}/> AI ChatBot</h1>
                 <label className="flex cursor-pointer gap-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +41,6 @@ export default function Header() {
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </label>
-            </div>
         </div>
     )
 }

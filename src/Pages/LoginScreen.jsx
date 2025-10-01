@@ -4,6 +4,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
+import { toast } from "react-toastify";
 import * as Yup from 'yup';
 const validationSchema = Yup.object({
     email: Yup.string().email("Please enter valid email").required("Please enter your email"),
@@ -15,17 +16,17 @@ const initialValues = {
 }
 //login screen
 export default function LoginScreen({ goto }) {
-    const { setloading, setuser, seterror, setsuccess, } = useValues();
+    const { setloading, setuser, } = useValues();
     const [secure, setseure] = useState(true)
     const login = (values) => {
         setloading(true)
         axios.post("/api/login", { email: values.email, password: values.password }, { withCredentials: true }).then(data => {
             setloading(false);
-            if (data.data === "Invalid credentials") { return seterror(data.data) }
-            setsuccess(data.data.message);
+            if (data.data === "Invalid credentials") { return toast.error(data.data) }
+            toast.success(data.data.message);
             setuser(data.data.user);
             localStorage.setItem('user', JSON.stringify(data.data.user))
-        }).catch(err => { seterror(err.message); setloading(false) })
+        }).catch(err => { toast.error(err.message); setloading(false) })
     }
 
     const { values, handleBlur, handleChange, handleSubmit, errors } = useFormik({

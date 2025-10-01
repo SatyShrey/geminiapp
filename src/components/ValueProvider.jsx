@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Contexts = createContext();
 
@@ -30,7 +31,7 @@ export default function ValueProvider({ children }) {
        axios.post("/api/start", {user:""}, { withCredentials: true }).then((data)=>{
             setloading(false)
         if(data.data==='Login expired'){ 
-            seterror(data.data) 
+            toast.error(data.data) 
             setuser(null)
             localStorage.clear();
         }else{

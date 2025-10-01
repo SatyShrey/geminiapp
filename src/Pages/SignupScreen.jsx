@@ -3,6 +3,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
+import { toast } from "react-toastify";
 import * as Yup from 'yup';
 const validationSchema = Yup.object({
     name: Yup.string().min(2).required("Please enter your name"),
@@ -18,7 +19,7 @@ const initialValues = {
 }
 export default function SignupScreen({ goto }) {
 
-    const { setloading, seterror, setsuccess, } = useValues();
+    const { setloading, } = useValues();
     const [secure, setseure] = useState(true)
     const [secure2, setseure2] = useState(true)
 
@@ -26,9 +27,9 @@ export default function SignupScreen({ goto }) {
         setloading(true)
         axios.post("/api/signup", { name: values.name, email: values.email, password: values.password }).then(data => {
             setloading(false)
-            if (data.data === "Signup success") { return setsuccess(data.data); }
-            seterror(data.data);
-        }).catch(err => { seterror(err.message); setloading(false) })
+            if (data.data === "Signup success") { return toast.success(data.data); }
+            toast.error(data.data);
+        }).catch(err => { toast.error(err.message); setloading(false) })
     }
 
     const { values, handleBlur, handleChange, handleSubmit, errors } = useFormik({

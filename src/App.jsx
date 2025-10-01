@@ -5,10 +5,18 @@ import Login from "./Pages/Login";
 import Drawer from "./components/Drawer";
 import InputBox from "./components/InputBox";
 import Modals from "./components/Modals";
+import { useEffect } from "react";
 
 export default function App() {
+
+  useEffect(() => {
+      window.visualViewport.addEventListener('resize', () => {
+         document.getElementById('app').style.height = `${window.visualViewport.height}px`;
+      });
+   }, [])
+
   return (
-    <div className="h-dvh flex flex-col bg-base-100/90 relative overflow-hidden w-3xl max-w-full m-auto shadow-[0_0_1px]">
+    <div id="app" className="h-dvh flex flex-col bg-base-100/90 relative overflow-hidden max-w-3xl m-auto">
         <Header />
         <Login />
         <Protected><Dashboard /></Protected>

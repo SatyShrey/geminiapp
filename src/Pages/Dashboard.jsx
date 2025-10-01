@@ -10,7 +10,7 @@ export default function Dashboard() {
     useEffect(() => {
         if(el.current){
             const typed = new Typed(el.current, {
-            strings: [`Hello ${user.name}`, 'Welcome to Gemini lemon'],
+            strings: [`Hello ${user.name}`, 'Welcome to AI ChatBot'],
             typeSpeed: 50,
             showCursor: false,
             loop:true,
